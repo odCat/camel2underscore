@@ -13,7 +13,7 @@ for i in input:
         output = output[1:]
     if output[-1] == "_":
         output = output[:-1]
-    print(output)
+    print(output.lower())
 
 # TODO
 # Fis the multiple digits number
