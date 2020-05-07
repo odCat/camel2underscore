@@ -5,7 +5,7 @@ output = ''
 
 for i in input:
     for j in i:
-        if j in ['0','1','2','3','4','5','6','7','8','9']:
+        if j > '0' and j < '9':
             output = i[:i.find(j)]
             output += '_' + j + '_'
             output += i[i.find(j) + 1:]
