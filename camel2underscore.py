@@ -14,3 +14,6 @@ for i in input:
     if out[-1] == "_":
         out = out[:-1]
     print(out)
+
+# TODO
+# Fis the multiple digits number
