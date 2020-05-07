@@ -6,12 +6,9 @@ for i in input:
     output = ''
 
     for j in i:
-        if j > '0' and j < '9':
-            output += '_' + j
-        elif j.isupper():
-            output += '_' + j
-        else:
-            output += j
+        if j.isdigit() or j.isupper():
+            output += '_'
+        output += j
 
     if output[0] == "_":
         output = output[1:]
