@@ -17,4 +17,5 @@ for i in input:
     print(output.lower())
 
 # TODO
-# Fis the multiple digits number
+# Fis the multiple digits number or multiple uppercase groups
+#  of characters, like acronyms
