@@ -1,6 +1,6 @@
 #!python3
 
-input = ["TestInput1", "Test2Input", "1Test", "Test22Test", "TestThisTest", "Is21NOT"]
+input_values = ["TestInput1", "Test2Input", "1Test", "Test22Test", "TestThisTest", "Is21NOT"]
 digit_flag = False
 upper_flag = False
 
