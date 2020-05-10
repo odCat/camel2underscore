@@ -1,8 +1,8 @@
 #!python3
 
-input_values = ["TestInput1", "Test2Input", "1Test", "Test22Test", "TestThisTest", "Is21NOT"]
-digit_flag = False
-upper_flag = False
+input_values = ["TestInput1", "Test2Input", "Test22Test", "TestThisTest", "1Is21NOT"]
+is_digit = False
+is_uppercase = False
 
 def make_printable(output):
     if output[0] == "_":
@@ -11,21 +11,21 @@ def make_printable(output):
         output = output[:-1]
     print(output.lower())
 
-for i in input_values:
+for value in input_values:
     output = ''
 
-    for j in i:
-        if j.isdigit():
-            if not digit_flag:
+    for char in value:
+        if char.isdigit():
+            if not is_digit:
                 output += '_'
-            digit_flag = True
-        elif j.isupper():
-            if not upper_flag:
+            is_digit = True
+        elif char.isupper():
+            if not is_uppercase:
                 output += '_'
-            upper_flag = True
+            is_uppercase = True
         else:
-            digit_flag = upper_flag = False
-        output += j
+            is_digit = is_uppercase = False
+        output += char
 
     make_printable(output)
 
