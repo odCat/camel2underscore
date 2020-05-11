@@ -4,10 +4,15 @@ input_values = ["TestInput1", "Test2Input", "Test22Test", "TestThisTest", "1Is21
 previous_was_digit = False
 previous_was_uppercase = False
 
+def first_char_is_underline(output):
+    return output[0] == '_'
+def last_char_is_underline(output):
+    return output[-1] == '_'
+
 def make_printable(output):
-    if output[0] == "_":
+    if first_char_is_underline(output):
         output = output[1:]
-    if output[-1] == "_":
+    if last_char_is_underline(output):
         output = output[:-1]
     print(output.lower())
 
