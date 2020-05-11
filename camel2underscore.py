@@ -8,12 +8,16 @@ def first_char_is_underline(output):
     return output[0] == '_'
 def last_char_is_underline(output):
     return output[-1] == '_'
+def remove_first_character(output):
+    return output[1:]
+def remove_last_character(output):
+    return output[:-1]
 
 def make_printable(output):
     if first_char_is_underline(output):
-        output = output[1:]
+        output = remove_first_character(output)
     if last_char_is_underline(output):
-        output = output[:-1]
+        output = remove_last_character(output)
     print(output.lower())
 
 for value in input_values:
