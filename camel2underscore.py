@@ -39,4 +39,5 @@ for value in input_values:
     make_printable(output)
 
 # TODO
+# what about acronym follows by a uppercase?
 # refactor
