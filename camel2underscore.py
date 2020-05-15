@@ -1,8 +1,9 @@
 #!python3
 
-input_values = ["TestInput1", "Test2Input", "Test22Test", "TestThisTest", "1Is21NOT"]
+input_values = ["TestInput1", "Test2Input", "Test22Test", "TestThisTest", "1NOTIs21"]
 previous_was_digit = False
 previous_was_uppercase = False
+inside_word = False
 
 def first_char_is_underline(output):
     return output[0] == '_'
@@ -31,13 +32,18 @@ for value in input_values:
         elif char.isupper():
             if not previous_was_uppercase:
                 output += '_'
+            else:
+                inside_word = True
             previous_was_uppercase = True
-        else:
-            previous_was_digit = previous_was_uppercase = False
+        elif char.islower():
+            if inside_word:
+                output = output[:-1] + '_' + output[-1:]
+            previous_was_uppercase = False
+            previous_was_digit = False
+            inside_word = False
         output += char
 
     make_printable(output)
 
 # TODO
-# what about acronym follows by a uppercase?
 # refactor
