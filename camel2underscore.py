@@ -1,16 +1,5 @@
 #!python3
 
-
-def remove_newline(input):
-    output = []
-    for line in input:
-        output.append(line[:-1])
-    return output
-
-def read_input_from_file():
-    input = open('input_file.txt')
-    return input.readlines()
-
 def first_char_is_underline(output):
     return output[0] == '_'
 def last_char_is_underline(output):
@@ -26,6 +15,18 @@ def make_printable(output):
     if last_char_is_underline(output):
         output = remove_last_character(output)
     return output.lower()
+
+def remove_newlines_from_list(input):
+    output = []
+    for line in input:
+        output.append(remove_last_character(line))
+    return output
+
+def read_input_from_file():
+    input = open('input_file.txt')
+    output = input.readlines()
+    output = remove_newlines_from_list(output)
+    return output
 
 def convert(input_values):
     previous_was_digit = False
@@ -58,7 +59,7 @@ def convert(input_values):
         output += line + '\n'
     return output[:-1]
 
-input_values = remove_newline(read_input_from_file())
+input_values = read_input_from_file()
 print(convert(input_values))
 
 # TODO
