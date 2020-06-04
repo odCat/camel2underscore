@@ -16,13 +16,14 @@ def make_printable(output):
         output = remove_last_character(output)
     return output.lower()
 
-def remove_newlines_from_list(input):
-    output = []
-    for line in input:
-        output.append(remove_last_character(line))
-    return output
-
 def read_input_from_file():
+
+    def remove_newlines_from_list(input):
+        output = []
+        for line in input:
+            output.append(remove_last_character(line))
+        return output
+
     input = open('input_file.txt')
     output = input.readlines()
     output = remove_newlines_from_list(output)
