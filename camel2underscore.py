@@ -57,7 +57,7 @@ def convert(input_values):
             line += char
             line = make_printable(line)
         output += line + '\n'
-    return output[:-1]
+    return remove_last_character(output)
 
 input_values = read_input_from_file()
 print(convert(input_values))
