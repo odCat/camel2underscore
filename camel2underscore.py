@@ -1,10 +1,18 @@
 #!python3
 
-input_values = ["TestInput1", "Test2Input", "Test22Test", "TestThisTest", "1NOTIs21"]
-
 previous_was_digit = False
 previous_was_uppercase = False
 inside_acronym = False
+
+def remove_newline(input):
+    output = []
+    for line in input:
+        output.append(line[:-1])
+    return output
+
+def read_input_from_file():
+    input = open('input_file.txt')
+    return input.readlines()
 
 def first_char_is_underline(output):
     return output[0] == '_'
@@ -22,6 +30,7 @@ def make_printable(output):
         output = remove_last_character(output)
     return output.lower()
 
+input_values = remove_newline(read_input_from_file())
 for value in input_values:
     output = ''
 
