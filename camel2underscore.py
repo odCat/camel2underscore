@@ -61,6 +61,3 @@ def convert(input_values):
 
 input_values = read_input_from_file()
 print(convert(input_values))
-
-# TODO
-# refactor
