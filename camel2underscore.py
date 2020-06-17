@@ -29,7 +29,7 @@ def read_input_from_file():
     output = remove_newlines_from_list(output)
     return output
 
-def convert(input_values):
+def convert_camel_2_underline(input_values):
     previous_was_digit = False
     previous_was_uppercase = False
     inside_acronym = False
@@ -61,4 +61,4 @@ def convert(input_values):
     return remove_last_character(output)
 
 input_values = read_input_from_file()
-print(convert(input_values))
+print(convert_camel_2_underline(input_values))
