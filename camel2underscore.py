@@ -1,5 +1,7 @@
 #!python3
 
+import sys, os
+
 def first_char_is_underline(output):
     return output[0] == '_'
 def last_char_is_underline(output):
@@ -24,10 +26,13 @@ def read_input_from_file():
             output.append(remove_last_character(line))
         return output
 
-    input = open('input_file.txt')
+    input = open(os.path.join(sys.path[0], 'input_file.txt'))
     output = input.readlines()
     output = remove_newlines_from_list(output)
     return output
+
+def not_camel_notation(value):
+    return False
 
 def convert_camel_2_underline(input_values):
     previous_was_digit = False
@@ -36,6 +41,8 @@ def convert_camel_2_underline(input_values):
 
     output = ''
     for value in input_values:
+        if not_camel_notation(value):
+            continue
         line = ''
 
         for char in value:
