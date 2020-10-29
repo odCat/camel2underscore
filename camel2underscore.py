@@ -67,5 +67,6 @@ def convert_camel_2_underline(input_values):
         output += line + '\n'
     return remove_last_character(output)
 
-input_values = read_input_from_file()
-print(convert_camel_2_underline(input_values))
+if __name__ == '__main__':
+    input_values = read_input_from_file()
+    print(convert_camel_2_underline(input_values))
