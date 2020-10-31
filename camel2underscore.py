@@ -31,8 +31,8 @@ def read_input_from_file():
     output = remove_newlines_from_list(output)
     return output
 
-def not_camel_notation(value):
-    return False
+def is_underscore_notation(value):
+    return '_' in value
 
 def convert_camel_2_underline(input_values):
     previous_was_digit = False
@@ -41,7 +41,7 @@ def convert_camel_2_underline(input_values):
 
     output = ''
     for value in input_values:
-        if not_camel_notation(value):
+        if is_underscore_notation(value):
             continue
         line = ''
 
@@ -75,3 +75,4 @@ if __name__ == '__main__':
 # get input file from arguments
 # creates tests
 # check if the values are not already underscored
+## ^ this will need logging
