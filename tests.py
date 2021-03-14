@@ -64,7 +64,12 @@ class TestCamel2Underscore(unittest.TestCase):
     def test_text_to_code(self):
         expected = "'test1',\n'test2'\n"
         data = 'test1\ntest2\n'
-        self.assertEqual(expected, c2u.text_to_code(data))
+        self.assertEqual(expected, c2u.convert_text_to_code(data))
+
+    def test_list_to_text(self):
+        data = ['value1', 'value2', 'value3']
+        expected = 'value1\nvalue2\nvalue3\n'
+        self.assertEqual(expected, c2u.list_to_text(data))
 
 
 if __name__ == '__main__':

@@ -16,21 +16,63 @@
 
 import tkinter as tk
 
+import camel2underscore as c2u
+
 root = tk.Tk()
 root.geometry('400x800')
 root.title('Camel to underscore')
 
-frame1 = tk.Frame(root)
-frame1.pack(side='right')
-button = tk.Button(frame1, text='Convert')
-button.pack(side='right')
 
-frame2 = tk.Frame(root)
-frame2.pack(side='left', fill='both', expand=True)
-scrollbar = tk.Scrollbar(frame2)
+def set_input_text(text):
+    text_input.delete(1.0, tk.END)
+    text_input.insert(1.0, text)
+
+
+def set_text_from_file():
+    data = c2u.read_input_from_file()
+    data = c2u.list_to_text(data)
+    set_input_text(data)
+
+
+def convert_input():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.convert_camel_2_underline(data.split())
+    set_input_text(data + '\n')
+
+
+def convert_input_text_to_code():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.convert_text_to_code(data)
+    set_input_text(data.rstrip())
+
+
+# Command frame
+command_frame = tk.Frame(root)
+command_frame.pack(side='right')
+button1 = tk.Button(command_frame, text='Open Text File')
+button1.pack(expand=tk.YES)
+button2 = tk.Button(command_frame, text='Convert')
+button2.pack(expand=tk.YES)
+button3 = tk.Button(command_frame, text='To Code')
+button3.pack(expand=tk.YES)
+
+# Text frame
+text_frame = tk.Frame(root)
+text_frame.pack(side='left', fill='both', expand=True)
+scrollbar = tk.Scrollbar(text_frame)
 scrollbar.pack(side='right', fill='y')
-text = tk.Text(frame2, wrap='word')  # , yscrollcommand = scrollbar.set)
-text.pack(side='left', fill='both', expand=True)
-# scrollbar['command'] = text.yview
+text_input = tk.Text(text_frame, wrap='word',
+                     yscrollcommand=scrollbar.set)
+text_input.pack(side='left', fill='both', expand=True)
+scrollbar['command'] = text_input.yview
+
+# Set commands
+button1['command'] = (lambda: set_text_from_file())
+button2['command'] = (lambda: convert_input())
+button3['command'] = (lambda: convert_input_text_to_code())
 
 root.mainloop()
+
+# TODO
+# Maybe disable the button so an action cannot be taken
+# multiple times

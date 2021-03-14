@@ -17,6 +17,7 @@
 from sys import argv
 from sys import path
 from sys import exit as sys_exit
+from re import sub
 import os
 
 
@@ -47,17 +48,17 @@ def make_printable(output):
 def read_input_from_file(input_file='input_file.txt'):
     output = []
 
-    def remove_newlines_from_list(input):
+    def remove_newlines_from_list(text):
         result = []
-        for line in input:
+        for line in text:
             result.append(remove_last_character(line))
         return result
 
     try:
-        input = open(os.path.join(path[0], input_file))
-        output = input.readlines()
+        input_file = open(os.path.join(path[0], input_file))
+        output = input_file.readlines()
         output = remove_newlines_from_list(output)
-        input.close()
+        input_file.close()
     except FileNotFoundError:
         print('File not found')
         sys_exit()
@@ -68,19 +69,27 @@ def is_underscore_notation(value):
     return '_' in value
 
 
-def text_to_code(text):
-    result = "'" + text
+def convert_text_to_code(text):
+    result = sub('\n+', '\n', text)
+    result = "'" + result
     result = result.replace('\n', "',\n'")
     return result[:-3] + '\n'
 
 
-def convert_camel_2_underline(input_values):
+def list_to_text(a_list):
+    result = ''
+    for i in a_list:
+        result += i + '\n'
+    return result
+
+
+def convert_camel_2_underline(input_values_list):
     previous_was_digit = False
     previous_was_uppercase = False
     inside_acronym = False
 
     output = ''
-    for value in input_values:
+    for value in input_values_list:
         if is_underscore_notation(value):
             continue
         line = ''
