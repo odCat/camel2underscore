@@ -1,4 +1,4 @@
-#!python3
+#!python
 
 #   Copyright 2020, 2021 Mihai Gătejescu
 #
@@ -14,39 +14,51 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import sys, os
+import sys
+import os
+
 
 def first_char_is_underline(output):
     return output[0] == '_'
+
+
 def last_char_is_underline(output):
     return output[-1] == '_'
+
+
 def remove_first_character(output):
     return output[1:]
+
+
 def remove_last_character(output):
     return output[:-1]
 
+
 def make_printable(output):
-    if first_char_is_underline(output):
+    while first_char_is_underline(output):
         output = remove_first_character(output)
-    if last_char_is_underline(output):
+    while last_char_is_underline(output):
         output = remove_last_character(output)
     return output.lower()
 
-def read_input_from_file():
 
+def read_input_from_file(input_file='input_file.txt'):
     def remove_newlines_from_list(input):
         output = []
         for line in input:
             output.append(remove_last_character(line))
         return output
 
-    input = open(os.path.join(sys.path[0], 'input_file.txt'))
+    input = open(os.path.join(sys.path[0], input_file))
     output = input.readlines()
     output = remove_newlines_from_list(output)
+    input.close()
     return output
+
 
 def is_underscore_notation(value):
     return '_' in value
+
 
 def convert_camel_2_underline(input_values):
     previous_was_digit = False
@@ -81,6 +93,7 @@ def convert_camel_2_underline(input_values):
         output += line + '\n'
     return remove_last_character(output)
 
+
 if __name__ == '__main__':
     input_values = read_input_from_file()
     print(convert_camel_2_underline(input_values))
@@ -89,4 +102,4 @@ if __name__ == '__main__':
 # get input file from arguments
 # creates tests
 # check if the values are not already underscored
-## ^ this will need logging
+# ^ this will need logging
