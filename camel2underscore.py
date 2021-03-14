@@ -14,7 +14,9 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import sys
+from sys import argv
+from sys import path
+from sys import exit as sys_exit
 import os
 
 
@@ -43,16 +45,22 @@ def make_printable(output):
 
 
 def read_input_from_file(input_file='input_file.txt'):
-    def remove_newlines_from_list(input):
-        output = []
-        for line in input:
-            output.append(remove_last_character(line))
-        return output
+    output = []
 
-    input = open(os.path.join(sys.path[0], input_file))
-    output = input.readlines()
-    output = remove_newlines_from_list(output)
-    input.close()
+    def remove_newlines_from_list(input):
+        result = []
+        for line in input:
+            result.append(remove_last_character(line))
+        return result
+
+    try:
+        input = open(os.path.join(path[0], input_file))
+        output = input.readlines()
+        output = remove_newlines_from_list(output)
+        input.close()
+    except FileNotFoundError:
+        print('File not found')
+        sys_exit()
     return output
 
 
@@ -95,11 +103,12 @@ def convert_camel_2_underline(input_values):
 
 
 if __name__ == '__main__':
-    input_values = read_input_from_file()
+    if len(argv) > 1:
+        input_values = read_input_from_file(argv[1])
+    else:
+        input_values = read_input_from_file()
     print(convert_camel_2_underline(input_values))
 
 # TODO
-# get input file from arguments
-# creates tests
 # check if the values are not already underscored
 # ^ this will need logging
