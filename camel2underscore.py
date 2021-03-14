@@ -68,6 +68,12 @@ def is_underscore_notation(value):
     return '_' in value
 
 
+def text_to_code(text):
+    result = "'" + text
+    result = result.replace('\n', "',\n'")
+    return result[:-3] + '\n'
+
+
 def convert_camel_2_underline(input_values):
     previous_was_digit = False
     previous_was_uppercase = False
