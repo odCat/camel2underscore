@@ -21,11 +21,15 @@ from re import sub
 import os
 
 
-def first_char_is_underline(output):
+def is_underscore_notation(value):
+    return '_' in value
+
+
+def first_char_is_underscore(output):
     return output[0] == '_'
 
 
-def last_char_is_underline(output):
+def last_char_is_underscore(output):
     return output[-1] == '_'
 
 
@@ -37,10 +41,10 @@ def remove_last_character(output):
     return output[:-1]
 
 
-def make_printable(output):
-    while first_char_is_underline(output):
+def remove_underscores_from_start_and_end(output):
+    while first_char_is_underscore(output):
         output = remove_first_character(output)
-    while last_char_is_underline(output):
+    while last_char_is_underscore(output):
         output = remove_last_character(output)
     return output.lower()
 
@@ -65,15 +69,17 @@ def read_input_from_file(input_file='input_file.txt'):
     return output
 
 
-def is_underscore_notation(value):
-    return '_' in value
-
-
 def convert_text_to_code(text):
     result = sub('\n+', '\n', text)
     result = "'" + result
     result = result.replace('\n', "',\n'")
     return result[:-3] + '\n'
+
+
+def convert_code_to_text(code):
+    result = code.replace("',", '')
+    result = result.replace("'", '')
+    return result[:-1]
 
 
 def list_to_text(a_list):
@@ -112,7 +118,7 @@ def convert_camel_2_underline(input_values_list):
                 previous_was_digit = False
                 inside_acronym = False
             line += char
-            line = make_printable(line)
+            line = remove_underscores_from_start_and_end(line)
         output += line + '\n'
     return remove_last_character(output)
 
@@ -125,5 +131,6 @@ if __name__ == '__main__':
     print(convert_camel_2_underline(input_values))
 
 # TODO
-# check if the values are not already underscored
+# Check if the values are not already underscored
 # ^ this will need logging
+# Include help functionality

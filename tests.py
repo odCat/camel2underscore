@@ -29,12 +29,12 @@ class TestCamel2Underscore(unittest.TestCase):
         self.assertEqual(expected, c2u.convert_camel_2_underline(a_list))
 
     def test_first_character_is_underscore(self):
-        self.assertTrue(c2u.first_char_is_underline('_assert1'))
-        self.assertFalse(c2u.first_char_is_underline('assert2'))
+        self.assertTrue(c2u.first_char_is_underscore('_assert1'))
+        self.assertFalse(c2u.first_char_is_underscore('assert2'))
 
     def test_last_character_is_underscore(self):
-        self.assertTrue(c2u.last_char_is_underline('assert1_'))
-        self.assertFalse(c2u.last_char_is_underline('assert2'))
+        self.assertTrue(c2u.last_char_is_underscore('assert1_'))
+        self.assertFalse(c2u.last_char_is_underscore('assert2'))
 
     def test_remove_first_character(self):
         self.assertEqual('', c2u.remove_first_character(''))
@@ -59,7 +59,7 @@ class TestCamel2Underscore(unittest.TestCase):
     def test_make_printable(self):
         expected = 'test'
         data = '__TeSt__'
-        self.assertEqual(expected, c2u.make_printable(data))
+        self.assertEqual(expected, c2u.remove_underscores_from_start_and_end(data))
 
     def test_text_to_code(self):
         expected = "'test1',\n'test2'\n"
@@ -70,6 +70,11 @@ class TestCamel2Underscore(unittest.TestCase):
         data = ['value1', 'value2', 'value3']
         expected = 'value1\nvalue2\nvalue3\n'
         self.assertEqual(expected, c2u.list_to_text(data))
+
+    def test_convert_code_to_text(self):
+        data = "'value1',\n'value2',\n'value3'\n"
+        expected = 'value1\nvalue2\nvalue3'
+        self.assertEqual(expected, c2u.convert_code_to_text(data))
 
 
 if __name__ == '__main__':

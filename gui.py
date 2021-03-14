@@ -46,6 +46,12 @@ def convert_input_text_to_code():
     set_input_text(data.rstrip())
 
 
+def convert_input_code_to_text():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.convert_code_to_text(data)
+    set_input_text(data.rstrip())
+
+
 # Command frame
 command_frame = tk.Frame(root)
 command_frame.pack(side='right')
@@ -55,6 +61,8 @@ button2 = tk.Button(command_frame, text='Convert')
 button2.pack(expand=tk.YES)
 button3 = tk.Button(command_frame, text='To Code')
 button3.pack(expand=tk.YES)
+button4 = tk.Button(command_frame, text='To Text')
+button4.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -70,9 +78,10 @@ scrollbar['command'] = text_input.yview
 button1['command'] = (lambda: set_text_from_file())
 button2['command'] = (lambda: convert_input())
 button3['command'] = (lambda: convert_input_text_to_code())
+button4['command'] = (lambda: convert_input_code_to_text())
 
 root.mainloop()
 
 # TODO
-# Maybe disable the button so an action cannot be taken
+# Maybe disable the buttons so an action cannot be taken
 # multiple times
