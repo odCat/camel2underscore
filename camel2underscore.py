@@ -89,7 +89,13 @@ def list_to_text(a_list):
     return result
 
 
-def convert_camel_2_underline(input_values_list):
+def to_test_list(text):
+    result = sub('\n+', '\n', text)
+    result = result.replace('\n', '", "')
+    return '["' + result[:-3] + ']'
+
+
+def convert_camel_2_underscore(input_values_list):
     previous_was_digit = False
     previous_was_uppercase = False
     inside_acronym = False
@@ -128,7 +134,7 @@ if __name__ == '__main__':
         input_values = read_input_from_file(argv[1])
     else:
         input_values = read_input_from_file()
-    print(convert_camel_2_underline(input_values))
+    print(convert_camel_2_underscore(input_values))
 
 # TODO
 # Check if the values are not already underscored

@@ -26,7 +26,7 @@ class TestCamel2Underscore(unittest.TestCase):
                   'TestThisTest', '1NOTIs21']
         expected = ('test_input_1\ntest_2_input\ntest_22_test\n'
                     'test_this_test\n1_not_is_21')
-        self.assertEqual(expected, c2u.convert_camel_2_underline(a_list))
+        self.assertEqual(expected, c2u.convert_camel_2_underscore(a_list))
 
     def test_first_character_is_underscore(self):
         self.assertTrue(c2u.first_char_is_underscore('_assert1'))
@@ -75,6 +75,11 @@ class TestCamel2Underscore(unittest.TestCase):
         data = "'value1',\n'value2',\n'value3'\n"
         expected = 'value1\nvalue2\nvalue3'
         self.assertEqual(expected, c2u.convert_code_to_text(data))
+
+    def test_to_test_list(self):
+        data = 'value1\nvalue2\nvalue3\n'
+        expected = '["value1", "value2", "value3"]'
+        self.assertEqual(expected, c2u.to_test_list(data))
 
 
 if __name__ == '__main__':

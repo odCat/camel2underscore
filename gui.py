@@ -28,21 +28,27 @@ def set_input_text(text):
     text_input.insert(1.0, text)
 
 
-def set_text_from_file():
+def set_input_text_from_file():
     data = c2u.read_input_from_file()
     data = c2u.list_to_text(data)
     set_input_text(data)
 
 
-def convert_input():
+def convert_input_camel_2_underscore():
     data = text_input.get(1.0, tk.END)
-    data = c2u.convert_camel_2_underline(data.split())
+    data = c2u.convert_camel_2_underscore(data.split())
     set_input_text(data + '\n')
 
 
 def convert_input_text_to_code():
     data = text_input.get(1.0, tk.END)
     data = c2u.convert_text_to_code(data)
+    set_input_text(data.rstrip())
+
+
+def convert_input_text_to_test():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.to_test_list(data)
     set_input_text(data.rstrip())
 
 
@@ -61,8 +67,10 @@ button2 = tk.Button(command_frame, text='Convert')
 button2.pack(expand=tk.YES)
 button3 = tk.Button(command_frame, text='To Code')
 button3.pack(expand=tk.YES)
-button4 = tk.Button(command_frame, text='To Text')
+button4 = tk.Button(command_frame, text='To Test')
 button4.pack(expand=tk.YES)
+button5 = tk.Button(command_frame, text='To Text')
+button5.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -75,10 +83,11 @@ text_input.pack(side='left', fill='both', expand=True)
 scrollbar['command'] = text_input.yview
 
 # Set commands
-button1['command'] = (lambda: set_text_from_file())
-button2['command'] = (lambda: convert_input())
+button1['command'] = (lambda: set_input_text_from_file())
+button2['command'] = (lambda: convert_input_camel_2_underscore())
 button3['command'] = (lambda: convert_input_text_to_code())
-button4['command'] = (lambda: convert_input_code_to_text())
+button4['command'] = (lambda: convert_input_text_to_test())
+button5['command'] = (lambda: convert_input_code_to_text())
 
 root.mainloop()
 
