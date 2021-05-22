@@ -71,10 +71,22 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = 'value1\nvalue2\nvalue3\n'
         self.assertEqual(expected, c2u.list_to_text(data))
 
-    def test_convert_code_to_text(self):
+    def test_convert_to_text(self):
+        data = ''
+        expected = ''
+        self.assertEqual(expected, c2u.convert_to_text(data))
         data = "'value1',\n'value2',\n'value3'\n"
         expected = 'value1\nvalue2\nvalue3'
-        self.assertEqual(expected, c2u.convert_code_to_text(data))
+        self.assertEqual(expected, c2u.convert_to_text(data))
+        data = '["value1", "value2", "value3"]'
+        expected = 'value1\nvalue2\nvalue3'
+        self.assertEqual(expected, c2u.convert_to_text(data))
+        data = '["value1","value2","value3"]'
+        expected = 'value1\nvalue2\nvalue3'
+        self.assertEqual(expected, c2u.convert_to_text(data))
+        data = '[\n"value1",\n"value2",\n"value3"\n]'
+        expected = 'value1\nvalue2\nvalue3'
+        self.assertEqual(expected, c2u.convert_to_text(data))
 
     def test_to_test_list(self):
         data = 'value1\nvalue2\nvalue3\n'

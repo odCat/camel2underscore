@@ -54,7 +54,7 @@ def convert_input_text_to_test():
 
 def convert_input_code_to_text():
     data = text_input.get(1.0, tk.END)
-    data = c2u.convert_code_to_text(data)
+    data = c2u.convert_to_text(data)
     set_input_text(data.rstrip())
 
 

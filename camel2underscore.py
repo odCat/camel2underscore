@@ -76,12 +76,6 @@ def convert_text_to_code(text):
     return result[:-3] + '\n'
 
 
-def convert_code_to_text(code):
-    result = code.replace("',", '')
-    result = result.replace("'", '')
-    return result[:-1]
-
-
 def list_to_text(a_list):
     result = ''
     for i in a_list:
@@ -93,6 +87,20 @@ def to_test_list(text):
     result = sub('\n+', '\n', text)
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
+
+
+def convert_to_text(data):
+
+    def remove(text, characters):
+        for ch in characters:
+            text = text.replace(ch, '')
+        return text
+
+    result = data.replace('\'', '"')
+    result = result.replace('\n', '')
+    result = result.replace('",', '\n')
+    result = remove(result, '[]" ')
+    return result
 
 
 def convert_camel_2_underscore(input_values_list):
