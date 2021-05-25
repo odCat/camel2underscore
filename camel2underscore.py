@@ -84,7 +84,15 @@ def list_to_text(a_list):
 
 
 def to_test_list(text):
-    result = sub('\n+', '\n', text)
+
+    def remove_whitespaces(text):
+        result = text.replace('\t', '')
+        result = sub('\n+', '\n', result)
+        result = sub(' +\n', '\n', result)
+        result = sub('\n +', '\n', result)
+        return result.lstrip()
+
+    result = remove_whitespaces(text)
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
 

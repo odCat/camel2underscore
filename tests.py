@@ -89,7 +89,7 @@ class TestCamel2Underscore(unittest.TestCase):
         self.assertEqual(expected, c2u.convert_to_text(data))
 
     def test_to_test_list(self):
-        data = 'value1\nvalue2\nvalue3\n'
+        data = '  value1\n\t value2\t\nvalue3   \n'
         expected = '["value1", "value2", "value3"]'
         self.assertEqual(expected, c2u.to_test_list(data))
 
@@ -98,4 +98,4 @@ if __name__ == '__main__':
     unittest.main()
 
 # TODO
-# Improve is underscore test
+# Improve underscore test
