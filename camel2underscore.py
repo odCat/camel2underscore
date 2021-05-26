@@ -106,8 +106,9 @@ def convert_to_text(data):
 
     result = data.replace('\'', '"')
     result = result.replace('\n', '')
+    result = result.replace('", ', '\n')
     result = result.replace('",', '\n')
-    result = remove(result, '[]" ')
+    result = remove(result, '[]"')
     return result
 
 
