@@ -63,13 +63,13 @@ command_frame = tk.Frame(root)
 command_frame.pack(side='right')
 button1 = tk.Button(command_frame, text='Open Text File')
 button1.pack(expand=tk.YES)
-button2 = tk.Button(command_frame, text='Convert')
+button2 = tk.Button(command_frame, text='Camel 2 Underscore')
 button2.pack(expand=tk.YES)
-button3 = tk.Button(command_frame, text='To Code')
+button3 = tk.Button(command_frame, text='Comma-Separated Strings')
 button3.pack(expand=tk.YES)
-button4 = tk.Button(command_frame, text='To Test')
+button4 = tk.Button(command_frame, text='List (double quotes)')
 button4.pack(expand=tk.YES)
-button5 = tk.Button(command_frame, text='To Text')
+button5 = tk.Button(command_frame, text='Plain Text')
 button5.pack(expand=tk.YES)
 
 # Text frame
@@ -77,8 +77,7 @@ text_frame = tk.Frame(root)
 text_frame.pack(side='left', fill='both', expand=True)
 scrollbar = tk.Scrollbar(text_frame)
 scrollbar.pack(side='right', fill='y')
-text_input = tk.Text(text_frame, wrap='word',
-                     yscrollcommand=scrollbar.set)
+text_input = tk.Text(text_frame, wrap='word', yscrollcommand=scrollbar.set)
 text_input.pack(side='left', fill='both', expand=True)
 scrollbar['command'] = text_input.yview
 

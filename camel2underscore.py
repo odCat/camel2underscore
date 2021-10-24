@@ -61,8 +61,8 @@ def read_input_from_file(input_file='input_file.txt'):
     try:
         input_file = open(os.path.join(path[0], input_file))
         output = input_file.readlines()
-        output = remove_newlines_from_list(output)
         input_file.close()
+        output = remove_newlines_from_list(output)
     except FileNotFoundError:
         print('File not found')
         sys_exit()
@@ -85,12 +85,12 @@ def list_to_text(a_list):
 
 def to_test_list(text):
 
-    def remove_whitespaces(text):
-        result = text.replace('\t', '')
-        result = sub('\n+', '\n', result)
-        result = sub(' +\n', '\n', result)
-        result = sub('\n +', '\n', result)
-        return result.lstrip()
+    def remove_whitespaces(plain_text):
+        plain_text = plain_text.replace('\t', '')
+        plain_text = sub('\n+', '\n', plain_text)
+        plain_text = sub(' +\n', '\n', plain_text)
+        plain_text = sub('\n +', '\n', plain_text)
+        return plain_text.lstrip()
 
     result = remove_whitespaces(text)
     result = result.replace('\n', '", "')
