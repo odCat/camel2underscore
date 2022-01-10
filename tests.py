@@ -14,9 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import unittest
-
 import camel2underscore as c2u
+import unittest
 
 
 class TestCamel2Underscore(unittest.TestCase):
@@ -92,6 +91,11 @@ class TestCamel2Underscore(unittest.TestCase):
         data = '  value1\n\t value2  value2\t\nvalue3   \n'
         expected = '["value1", "value2  value2", "value3"]'
         self.assertEqual(expected, c2u.to_test_list(data))
+
+    def test_split_into_two_columns(self):
+        data = ' 1 1  2 2'
+        expected = '1 1\n2 2'
+        self.assertEqual(expected, c2u.split_into_two_columns(data))
 
 
 if __name__ == '__main__':

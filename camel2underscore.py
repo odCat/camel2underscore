@@ -146,6 +146,22 @@ def convert_camel_2_underscore(input_values_list):
     return remove_last_character(output)
 
 
+def split_into_two_columns(text, items_in_column=2):
+    text = sub('^ *', '', text)
+    text = sub(' +', ' ', text)
+    result = ''
+    count = 0
+    for character in text:
+        if character == ' ':
+            count += 1
+            if count == items_in_column:
+                count = 0
+                character = '\n'
+        result += character
+
+    return result
+
+
 if __name__ == '__main__':
     if len(argv) > 1:
         input_values = read_input_from_file(argv[1])
