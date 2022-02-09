@@ -19,6 +19,7 @@ from sys import path
 from sys import exit as sys_exit
 from re import sub
 import os
+import json
 
 
 def is_underscore_notation(value):
@@ -144,6 +145,30 @@ def convert_camel_2_underscore(input_values_list):
             line = remove_underscores_from_start_and_end(line)
         output += line + '\n'
     return remove_last_character(output)
+
+
+def list_to_lowercase(columns):
+    result = []
+    for i in columns:
+        result.append(i.lower())
+    return result
+
+
+def compare_columns(columns1, columns2):
+    columns1 = list_to_lowercase(columns1)
+    columns2 = list_to_lowercase(columns2)
+    return set(columns1) == set(columns2)
+
+
+def get_and_compare_columns(source1, source2):
+    def get_columns(source):
+        with open(source, 'r') as source:
+            result = json.load(source)
+        return result
+
+    columns1 = get_columns(source1)
+    columns2 = get_columns(source2)
+    return compare_columns(columns1, columns2)
 
 
 if __name__ == '__main__':

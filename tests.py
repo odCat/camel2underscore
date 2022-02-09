@@ -93,6 +93,16 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = '["value1", "value2  value2", "value3"]'
         self.assertEqual(expected, c2u.to_test_list(data))
 
+    def test_list_to_lowercase(self):
+        data = ['Column1', 'COLUMN2']
+        expected = ['column1', 'column2']
+        self.assertEqual(expected, c2u.list_to_lowercase(data))
+
+    def test_compare_columns_should_return_true_if_equal(self):
+        data1 = ['Column1', 'COLUMN2']
+        data2 = ['column2', 'column1']
+        self.assertTrue(c2u.compare_columns(data1, data2))
+
 
 if __name__ == '__main__':
     unittest.main()
