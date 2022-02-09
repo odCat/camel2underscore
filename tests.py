@@ -1,6 +1,6 @@
 #!python
 
-#   Copyright 2021 Mihai Gătejescu
+#   Copyright 2021, 2022 Mihai Gătejescu
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -14,9 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import unittest
-
 import camel2underscore as c2u
+import unittest
 
 
 class TestCamel2Underscore(unittest.TestCase):
@@ -102,6 +101,11 @@ class TestCamel2Underscore(unittest.TestCase):
         data1 = ['Column1', 'COLUMN2']
         data2 = ['column2', 'column1']
         self.assertTrue(c2u.compare_columns(data1, data2))
+
+    def test_split_into_two_columns(self):
+        data = ' 1 1  2 2'
+        expected = '1 1\n2 2'
+        self.assertEqual(expected, c2u.split_into_two_columns(data))
 
 
 if __name__ == '__main__':

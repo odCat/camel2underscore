@@ -1,6 +1,6 @@
 #!python
 
-#   Copyright 2020, 2021 Mihai Gătejescu
+#   Copyright 2020, 2021, 2022 Mihai Gătejescu
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -169,6 +169,22 @@ def get_and_compare_columns(source1, source2):
     columns1 = get_columns(source1)
     columns2 = get_columns(source2)
     return compare_columns(columns1, columns2)
+
+
+def split_into_two_columns(text, items_in_column=2):
+    text = sub('^ *', '', text)
+    text = sub(' +', ' ', text)
+    result = ''
+    count = 0
+    for character in text:
+        if character == ' ':
+            count += 1
+            if count == items_in_column:
+                count = 0
+                character = '\n'
+        result += character
+
+    return result
 
 
 if __name__ == '__main__':

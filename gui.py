@@ -1,6 +1,6 @@
 #!python
 
-#   Copyright 2020, 2021 Mihai Gătejescu
+#   Copyright 2020, 2021, 2022 Mihai Gătejescu
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -58,6 +58,12 @@ def convert_input_code_to_text():
     set_input_text(data.rstrip())
 
 
+def convert_input_text_into_two_columns():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.split_into_two_columns(data)
+    set_input_text(data.rstrip())
+
+
 # Command frame
 command_frame = tk.Frame(root)
 command_frame.pack(side='right')
@@ -71,6 +77,8 @@ button4 = tk.Button(command_frame, text='List (double quotes)')
 button4.pack(expand=tk.YES)
 button5 = tk.Button(command_frame, text='Plain Text')
 button5.pack(expand=tk.YES)
+button6 = tk.Button(command_frame, text='Split into two columns')
+button6.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -87,6 +95,7 @@ button2['command'] = (lambda: convert_input_camel_2_underscore())
 button3['command'] = (lambda: convert_input_text_to_code())
 button4['command'] = (lambda: convert_input_text_to_test())
 button5['command'] = (lambda: convert_input_code_to_text())
+button6['command'] = (lambda: convert_input_text_into_two_columns())
 
 root.mainloop()
 
