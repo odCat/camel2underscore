@@ -112,6 +112,11 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = 'a\naaa\naa\n'
         self.assertEqual(expected, c2u.get_first_column(data))
 
+    def test_should_order_lines(self):
+        data = ' bcz\nzzz bbb\naaa\nzzz aaa\n'
+        expected = 'aaa\nbcz\nzzz aaa\nzzz bbb\n'
+        self.assertEqual(expected, c2u.order_lines(data))
+
 
 if __name__ == '__main__':
     unittest.main()

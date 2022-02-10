@@ -191,6 +191,17 @@ def get_first_column(text):
     return sub(' .*$', '', text, flags=re.MULTILINE)
 
 
+def order_lines(text):
+    text = remove_whitespaces(text)
+    text = text.split('\n')
+    text.sort()
+    result = ''
+    for i in text:
+        if i != '':
+            result += i + '\n'
+    return result
+
+
 if __name__ == '__main__':
     if len(argv) > 1:
         input_values = read_input_from_file(argv[1])

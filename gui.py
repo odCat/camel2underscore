@@ -70,6 +70,12 @@ def keep_only_first_column():
     set_input_text(data.rstrip())
 
 
+def sort_lines():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.order_lines(data)
+    set_input_text(data.rstrip())
+
+
 # Command frame
 command_frame = tk.Frame(root)
 command_frame.pack(side='right')
@@ -87,6 +93,8 @@ button6 = tk.Button(command_frame, text='Split into two columns')
 button6.pack(expand=tk.YES)
 button7 = tk.Button(command_frame, text='First column')
 button7.pack(expand=tk.YES)
+button8 = tk.Button(command_frame, text='Sort')
+button8.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -105,6 +113,7 @@ button4['command'] = (lambda: convert_input_text_to_test())
 button5['command'] = (lambda: convert_input_code_to_text())
 button6['command'] = (lambda: convert_input_text_into_two_columns())
 button7['command'] = (lambda: keep_only_first_column())
+button8['command'] = (lambda: sort_lines())
 
 root.mainloop()
 
