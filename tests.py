@@ -107,6 +107,11 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = '1 1\n2 2'
         self.assertEqual(expected, c2u.split_into_two_columns(data))
 
+    def test_should_return_the_first_column(self):
+        data = ' a b c\naaa\naa bc\n'
+        expected = 'a\naaa\naa\n'
+        self.assertEqual(expected, c2u.get_first_column(data))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,7 +13,7 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-
+import re
 from sys import argv
 from sys import path
 from sys import exit as sys_exit
@@ -84,15 +84,14 @@ def list_to_text(a_list):
     return result
 
 
+def remove_whitespaces(plain_text):
+    plain_text = plain_text.replace('\t', '')
+    plain_text = sub('\n+', '\n', plain_text)
+    plain_text = sub(' +\n', '\n', plain_text)
+    plain_text = sub('\n +', '\n', plain_text)
+    return plain_text.lstrip()
+
 def to_test_list(text):
-
-    def remove_whitespaces(plain_text):
-        plain_text = plain_text.replace('\t', '')
-        plain_text = sub('\n+', '\n', plain_text)
-        plain_text = sub(' +\n', '\n', plain_text)
-        plain_text = sub('\n +', '\n', plain_text)
-        return plain_text.lstrip()
-
     result = remove_whitespaces(text)
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
@@ -185,6 +184,11 @@ def split_into_two_columns(text, items_in_column=2):
         result += character
 
     return result
+
+
+def get_first_column(text):
+    text = remove_whitespaces(text)
+    return sub(' .*$', '', text, flags=re.MULTILINE)
 
 
 if __name__ == '__main__':

@@ -64,6 +64,12 @@ def convert_input_text_into_two_columns():
     set_input_text(data.rstrip())
 
 
+def keep_only_first_column():
+    data = text_input.get(1.0, tk.END)
+    data = c2u.get_first_column(data)
+    set_input_text(data.rstrip())
+
+
 # Command frame
 command_frame = tk.Frame(root)
 command_frame.pack(side='right')
@@ -79,6 +85,8 @@ button5 = tk.Button(command_frame, text='Plain Text')
 button5.pack(expand=tk.YES)
 button6 = tk.Button(command_frame, text='Split into two columns')
 button6.pack(expand=tk.YES)
+button7 = tk.Button(command_frame, text='First column')
+button7.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -96,6 +104,7 @@ button3['command'] = (lambda: convert_input_text_to_code())
 button4['command'] = (lambda: convert_input_text_to_test())
 button5['command'] = (lambda: convert_input_code_to_text())
 button6['command'] = (lambda: convert_input_text_into_two_columns())
+button7['command'] = (lambda: keep_only_first_column())
 
 root.mainloop()
 
