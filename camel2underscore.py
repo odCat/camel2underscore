@@ -91,6 +91,7 @@ def remove_whitespaces(plain_text):
     plain_text = sub('\n +', '\n', plain_text)
     return plain_text.lstrip()
 
+
 def to_test_list(text):
     result = remove_whitespaces(text)
     result = result.replace('\n', '", "')

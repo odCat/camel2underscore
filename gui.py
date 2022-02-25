@@ -23,6 +23,9 @@ root.geometry('400x800')
 root.title('Camel to underscore')
 
 
+previous = ''
+
+
 def set_input_text(text):
     text_input.delete(1.0, tk.END)
     text_input.insert(1.0, text)
@@ -35,45 +38,60 @@ def set_input_text_from_file():
 
 
 def convert_input_camel_2_underscore():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.convert_camel_2_underscore(data.split())
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.convert_camel_2_underscore(previous.split())
     set_input_text(data + '\n')
 
 
 def convert_input_text_to_code():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.convert_text_to_code(data)
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.convert_text_to_code(previous)
     set_input_text(data.rstrip())
 
 
 def convert_input_text_to_test():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.to_test_list(data)
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.to_test_list(previous)
     set_input_text(data.rstrip())
 
 
 def convert_input_code_to_text():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.convert_to_text(data)
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.convert_to_text(previous)
     set_input_text(data.rstrip())
 
 
 def convert_input_text_into_two_columns():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.split_into_two_columns(data)
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.split_into_two_columns(previous)
     set_input_text(data.rstrip())
 
 
 def keep_only_first_column():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.get_first_column(data)
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.get_first_column(previous)
     set_input_text(data.rstrip())
 
 
 def sort_lines():
-    data = text_input.get(1.0, tk.END)
-    data = c2u.order_lines(data)
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.order_lines(previous)
     set_input_text(data.rstrip())
+
+
+def replace_with_previous():
+    global previous
+    if previous != '':
+        temp = text_input.get(1.0, tk.END)
+        set_input_text(previous.rstrip())
+        previous = temp
 
 
 # Command frame
@@ -95,6 +113,8 @@ button7 = tk.Button(command_frame, text='First column')
 button7.pack(expand=tk.YES)
 button8 = tk.Button(command_frame, text='Sort')
 button8.pack(expand=tk.YES)
+button9 = tk.Button(command_frame, text='Undo')
+button9.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -114,9 +134,11 @@ button5['command'] = (lambda: convert_input_code_to_text())
 button6['command'] = (lambda: convert_input_text_into_two_columns())
 button7['command'] = (lambda: keep_only_first_column())
 button8['command'] = (lambda: sort_lines())
+button9['command'] = (lambda: replace_with_previous())
 
 root.mainloop()
 
 # TODO
 # Maybe disable the buttons so an action cannot be taken
-# multiple times
+#  multiple times
+# Make tests
