@@ -47,7 +47,7 @@ class TestCamel2Underscore(unittest.TestCase):
 
     def test_is_underscore_notation(self):
         self.assertTrue(c2u.is_underscore_notation('Is_Underscore'))
-        # self.assertFalse(c2u.is_underscore_notation('_IsNotUnderscore_'))
+        self.assertFalse(c2u.is_underscore_notation('_IsNotUnderscore_'))
         self.assertFalse(c2u.is_underscore_notation('IsNotUnderscore'))
 
     def test_read_input_from_file(self):
@@ -128,6 +128,3 @@ class TestCamel2Underscore(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-# TODO
-# Improve underscore test

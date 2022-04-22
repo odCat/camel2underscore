@@ -23,7 +23,7 @@ import json
 
 
 def is_underscore_notation(value):
-    return '_' in value
+    return '_' in value.strip('_')
 
 
 def first_char_is_underscore(output):
