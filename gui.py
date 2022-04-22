@@ -65,6 +65,13 @@ def convert_input_code_to_text():
     set_input_text(data.rstrip())
 
 
+def switch_between_cases():
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.switch_cases(previous)
+    set_input_text(data.rstrip())
+
+
 def convert_input_text_into_two_columns():
     global previous
     previous = text_input.get(1.0, tk.END)
@@ -107,14 +114,16 @@ button4 = tk.Button(command_frame, text='List (double quotes)')
 button4.pack(expand=tk.YES)
 button5 = tk.Button(command_frame, text='Plain Text')
 button5.pack(expand=tk.YES)
-button6 = tk.Button(command_frame, text='Split into two columns')
+button6 = tk.Button(command_frame, text='Lower/Uppercase')
 button6.pack(expand=tk.YES)
-button7 = tk.Button(command_frame, text='First column')
+button7 = tk.Button(command_frame, text='Split into two columns')
 button7.pack(expand=tk.YES)
-button8 = tk.Button(command_frame, text='Sort')
+button8 = tk.Button(command_frame, text='First column')
 button8.pack(expand=tk.YES)
-button9 = tk.Button(command_frame, text='Undo')
+button9 = tk.Button(command_frame, text='Sort')
 button9.pack(expand=tk.YES)
+button10 = tk.Button(command_frame, text='Undo')
+button10.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -131,14 +140,16 @@ button2['command'] = (lambda: convert_input_camel_2_underscore())
 button3['command'] = (lambda: convert_input_text_to_code())
 button4['command'] = (lambda: convert_input_text_to_test())
 button5['command'] = (lambda: convert_input_code_to_text())
-button6['command'] = (lambda: convert_input_text_into_two_columns())
-button7['command'] = (lambda: keep_only_first_column())
-button8['command'] = (lambda: sort_lines())
-button9['command'] = (lambda: replace_with_previous())
+button6['command'] = (lambda: switch_between_cases())
+button7['command'] = (lambda: convert_input_text_into_two_columns())
+button8['command'] = (lambda: keep_only_first_column())
+button9['command'] = (lambda: sort_lines())
+button10['command'] = (lambda: replace_with_previous())
 
 root.mainloop()
 
 # TODO
 # Maybe disable the buttons so an action cannot be taken
 #  multiple times
+# Use OOP
 # Make tests

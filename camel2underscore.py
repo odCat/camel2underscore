@@ -70,6 +70,13 @@ def read_input_from_file(input_file='input_file.txt'):
     return output
 
 
+def switch_cases(text):
+    if text.islower():
+        return text.upper()
+    else:
+        return text.lower()
+
+
 def convert_text_to_code(text):
     result = sub('\n+', '\n', text)
     result = "'" + result

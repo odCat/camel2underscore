@@ -117,6 +117,14 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = 'aaa\nbcz\nzzz aaa\nzzz bbb\n'
         self.assertEqual(expected, c2u.order_lines(data))
 
+    def test_switch_between_lower_and_uppercase(self):
+        data = '(moon, car)'
+        expected = '(MOON, CAR)'
+        self.assertEqual(expected, c2u.switch_cases(data))
+        data = '(Moon, Car)'
+        expected = '(moon, car)'
+        self.assertEqual(expected, c2u.switch_cases(data))
+
 
 if __name__ == '__main__':
     unittest.main()
