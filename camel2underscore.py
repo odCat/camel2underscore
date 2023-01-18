@@ -100,7 +100,7 @@ def remove_whitespaces(plain_text):
     return plain_text.lstrip()
 
 
-def to_test_list(text):
+def to_double_quote_list(text):
     result = remove_whitespaces(text)
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
