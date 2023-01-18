@@ -13,6 +13,7 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
+
 import re
 from sys import argv
 from sys import path
@@ -104,6 +105,10 @@ def to_test_list(text):
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
 
+def to_one_quote_list(text):
+    result = remove_whitespaces(text)
+    result = result.replace('\n', '\', \'')
+    return '[\'' + result[:-3] + ']'
 
 def convert_to_text(data):
 

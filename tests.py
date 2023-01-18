@@ -87,10 +87,16 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = 'value1\nvalue2  value2\nvalue3'
         self.assertEqual(expected, c2u.convert_to_text(data))
 
-    def test_to_test_list(self):
+    def test_to_double_quote_list(self):
         data = '  value1\n\t value2  value2\t\nvalue3   \n'
         expected = '["value1", "value2  value2", "value3"]'
         self.assertEqual(expected, c2u.to_test_list(data))
+
+    def test_to_one_quote_list(self):
+        data = '  value1\n\t value2  value2\t\nvalue3   \n'
+        expected = '[\'value1\', \'value2  value2\', \'value3\']'
+        print(expected)
+        self.assertEqual(expected, c2u.to_one_quote_list(data))
 
     def test_list_to_lowercase(self):
         data = ['Column1', 'COLUMN2']
