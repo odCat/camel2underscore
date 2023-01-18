@@ -51,12 +51,17 @@ def convert_input_text_to_code():
     set_input_text(data.rstrip())
 
 
-def convert_input_text_to_test():
+def convert_input_text_to_double_quote_list():
     global previous
     previous = text_input.get(1.0, tk.END)
-    data = c2u.to_test_list(previous)
+    data = c2u.to_double_quote_list(previous)
     set_input_text(data.rstrip())
 
+def convert_input_text_to_single_quote_list():
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.to_one_quote_list(previous)
+    set_input_text(data.rstrip())
 
 def convert_input_code_to_text():
     global previous
@@ -112,18 +117,20 @@ button3 = tk.Button(command_frame, text='Comma-Separated Strings')
 button3.pack(expand=tk.YES)
 button4 = tk.Button(command_frame, text='List (double quotes)')
 button4.pack(expand=tk.YES)
-button5 = tk.Button(command_frame, text='Plain Text')
+button5 = tk.Button(command_frame, text='List (single quotes)')
 button5.pack(expand=tk.YES)
-button6 = tk.Button(command_frame, text='Lower/Uppercase')
+button6 = tk.Button(command_frame, text='Plain Text')
 button6.pack(expand=tk.YES)
-button7 = tk.Button(command_frame, text='Split into two columns')
+button7 = tk.Button(command_frame, text='Lower/Uppercase')
 button7.pack(expand=tk.YES)
-button8 = tk.Button(command_frame, text='First column')
+button8 = tk.Button(command_frame, text='Split into two columns')
 button8.pack(expand=tk.YES)
-button9 = tk.Button(command_frame, text='Sort')
+button9 = tk.Button(command_frame, text='First column')
 button9.pack(expand=tk.YES)
-button10 = tk.Button(command_frame, text='Undo')
+button10 = tk.Button(command_frame, text='Sort')
 button10.pack(expand=tk.YES)
+button11 = tk.Button(command_frame, text='Undo')
+button11.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -138,13 +145,14 @@ scrollbar['command'] = text_input.yview
 button1['command'] = (lambda: set_input_text_from_file())
 button2['command'] = (lambda: convert_input_camel_2_underscore())
 button3['command'] = (lambda: convert_input_text_to_code())
-button4['command'] = (lambda: convert_input_text_to_test())
-button5['command'] = (lambda: convert_input_code_to_text())
-button6['command'] = (lambda: switch_between_cases())
-button7['command'] = (lambda: convert_input_text_into_two_columns())
-button8['command'] = (lambda: keep_only_first_column())
-button9['command'] = (lambda: sort_lines())
-button10['command'] = (lambda: replace_with_previous())
+button4['command'] = (lambda: convert_input_text_to_double_quote_list())
+button5['command'] = (lambda: convert_input_text_to_single_quote_list())
+button6['command'] = (lambda: convert_input_code_to_text())
+button7['command'] = (lambda: switch_between_cases())
+button8['command'] = (lambda: convert_input_text_into_two_columns())
+button9['command'] = (lambda: keep_only_first_column())
+button10['command'] = (lambda: sort_lines())
+button11['command'] = (lambda: replace_with_previous())
 
 root.mainloop()
 
