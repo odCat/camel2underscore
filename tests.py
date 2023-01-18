@@ -95,7 +95,6 @@ class TestCamel2Underscore(unittest.TestCase):
     def test_to_one_quote_list(self):
         data = '  value1\n\t value2  value2\t\nvalue3   \n'
         expected = '[\'value1\', \'value2  value2\', \'value3\']'
-        print(expected)
         self.assertEqual(expected, c2u.to_one_quote_list(data))
 
     def test_list_to_lowercase(self):
