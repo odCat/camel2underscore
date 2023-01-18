@@ -60,7 +60,7 @@ def convert_input_text_to_double_quote_list():
 def convert_input_text_to_single_quote_list():
     global previous
     previous = text_input.get(1.0, tk.END)
-    data = c2u.to_one_quote_list(previous)
+    data = c2u.to_single_quote_list(previous)
     set_input_text(data.rstrip())
 
 def convert_input_code_to_text():

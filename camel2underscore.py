@@ -105,7 +105,7 @@ def to_double_quote_list(text):
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
 
-def to_one_quote_list(text):
+def to_single_quote_list(text):
     result = remove_whitespaces(text)
     result = result.replace('\n', '\', \'')
     return '[\'' + result[:-3] + ']'
