@@ -130,6 +130,11 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = '(moon, car)'
         self.assertEqual(expected, c2u.switch_cases(data))
 
+    def test_two_columns(self):
+        data = 'column1\ncolumn2\ncolumn1\ncolumn2'
+        expected = 'column1 column2\ncolumn1 column2'
+        self.assertEqual(expected, c2u.two_columns(data))
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -105,10 +105,12 @@ def to_double_quote_list(text):
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
 
+
 def to_single_quote_list(text):
     result = remove_whitespaces(text)
     result = result.replace('\n', '\', \'')
     return '[\'' + result[:-3] + ']'
+
 
 def convert_to_text(data):
 
@@ -212,6 +214,18 @@ def order_lines(text):
     for i in text:
         if i != '':
             result += i + '\n'
+    return result
+
+
+def two_columns(text):
+    result = ''
+    text = text.split('\n')
+    for i in range(len(text)):
+        if i != 0 and i % 2 == 0:
+            result = result + '\n'
+        elif i % 2 != 0:
+            result = result + ' '
+        result = result + text[i]
     return result
 
 
