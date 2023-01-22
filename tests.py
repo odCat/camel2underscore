@@ -135,6 +135,11 @@ class TestCamel2Underscore(unittest.TestCase):
         expected = 'column1 column2\ncolumn1 column2'
         self.assertEqual(expected, c2u.two_columns(data))
 
+    def test_remove_header(self):
+        data = 'header\nline1\nline2'
+        expected = 'line1\nline2'
+        self.assertEqual(expected, c2u.remove_header(data))
+
 
 if __name__ == '__main__':
     unittest.main()

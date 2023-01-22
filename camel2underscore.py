@@ -229,6 +229,11 @@ def two_columns(text):
     return result
 
 
+def remove_header(text):
+    result = sub(r'^.*\n', '', text, count=1)
+    return result
+
+
 if __name__ == '__main__':
     if len(argv) > 1:
         input_values = read_input_from_file(argv[1])

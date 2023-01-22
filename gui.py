@@ -57,11 +57,13 @@ def convert_input_text_to_double_quote_list():
     data = c2u.to_double_quote_list(previous)
     set_input_text(data.rstrip())
 
+
 def convert_input_text_to_single_quote_list():
     global previous
     previous = text_input.get(1.0, tk.END)
     data = c2u.to_single_quote_list(previous)
     set_input_text(data.rstrip())
+
 
 def convert_input_code_to_text():
     global previous
@@ -77,10 +79,17 @@ def switch_between_cases():
     set_input_text(data.rstrip())
 
 
+def remove_header():
+    global previous
+    previous = text_input.get(1.0, tk.END)
+    data = c2u.remove_header(previous)
+    set_input_text(data.rstrip())
+
+
 def convert_input_text_into_two_columns():
     global previous
     previous = text_input.get(1.0, tk.END)
-    data = c2u.split_into_two_columns(previous)
+    data = c2u.two_columns(previous)
     set_input_text(data.rstrip())
 
 
@@ -123,14 +132,16 @@ button6 = tk.Button(command_frame, text='Plain Text')
 button6.pack(expand=tk.YES)
 button7 = tk.Button(command_frame, text='Lower/Uppercase')
 button7.pack(expand=tk.YES)
-button8 = tk.Button(command_frame, text='Split into two columns')
+button8 = tk.Button(command_frame, text='Remove Header')
 button8.pack(expand=tk.YES)
-button9 = tk.Button(command_frame, text='First column')
+button9 = tk.Button(command_frame, text='One column into two')
 button9.pack(expand=tk.YES)
-button10 = tk.Button(command_frame, text='Sort')
+button10 = tk.Button(command_frame, text='First column')
 button10.pack(expand=tk.YES)
-button11 = tk.Button(command_frame, text='Undo')
+button11 = tk.Button(command_frame, text='Sort')
 button11.pack(expand=tk.YES)
+button12 = tk.Button(command_frame, text='Undo')
+button12.pack(expand=tk.YES)
 
 # Text frame
 text_frame = tk.Frame(root)
@@ -149,10 +160,11 @@ button4['command'] = (lambda: convert_input_text_to_double_quote_list())
 button5['command'] = (lambda: convert_input_text_to_single_quote_list())
 button6['command'] = (lambda: convert_input_code_to_text())
 button7['command'] = (lambda: switch_between_cases())
-button8['command'] = (lambda: convert_input_text_into_two_columns())
-button9['command'] = (lambda: keep_only_first_column())
-button10['command'] = (lambda: sort_lines())
-button11['command'] = (lambda: replace_with_previous())
+button8['command'] = (lambda: remove_header())
+button9['command'] = (lambda: convert_input_text_into_two_columns())
+button10['command'] = (lambda: keep_only_first_column())
+button11['command'] = (lambda: sort_lines())
+button12['command'] = (lambda: replace_with_previous())
 
 root.mainloop()
 
