@@ -169,6 +169,7 @@ button12['command'] = (lambda: replace_with_previous())
 root.mainloop()
 
 # TODO
+# Add separators for the buttons
 # Maybe disable the buttons so an action cannot be taken
 #  multiple times
 # Use OOP
