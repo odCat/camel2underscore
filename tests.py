@@ -38,12 +38,12 @@ class TestCamel2Underscore(unittest.TestCase):
     def test_remove_first_character(self):
         self.assertEqual('', c2u.remove_first_character(''))
         self.assertEqual('', c2u.remove_first_character('a'))
-        self.assertEqual('bcd', c2u.remove_first_character('abcd'))
+        self.assertEqual('corn', c2u.remove_first_character('acorn'))
 
     def test_remove_last_character(self):
         self.assertEqual('', c2u.remove_last_character(''))
         self.assertEqual('', c2u.remove_last_character('a'))
-        self.assertEqual('abc', c2u.remove_last_character('abcd'))
+        self.assertEqual('se', c2u.remove_last_character('sea'))
 
     def test_is_underscore_notation(self):
         self.assertTrue(c2u.is_underscore_notation('Is_Underscore'))
