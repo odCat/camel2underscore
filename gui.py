@@ -185,6 +185,8 @@ button12['command'] = (lambda: replace_with_previous())
 root.mainloop()
 
 # TODO
+# Reorder the buttons
+# Undo does not work
 # Maybe disable the buttons so an action cannot be taken
 #  multiple times
 # Use OOP
