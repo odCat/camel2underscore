@@ -14,6 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+from tkinter import ttk
 import tkinter as tk
 
 import camel2underscore as c2u
@@ -118,6 +119,7 @@ def replace_with_previous():
 # Command frame
 command_frame = tk.Frame(root)
 command_frame.pack(side='right')
+
 button1 = tk.Button(command_frame, text='Open Text File')
 button1.pack(expand=tk.YES)
 button2 = tk.Button(command_frame, text='Camel 2 Underscore')
@@ -132,12 +134,26 @@ button6 = tk.Button(command_frame, text='Plain Text')
 button6.pack(expand=tk.YES)
 button7 = tk.Button(command_frame, text='Lower/Uppercase')
 button7.pack(expand=tk.YES)
+
+ttk.Separator(
+    master=command_frame,
+    orient=tk.HORIZONTAL,
+    class_=ttk.Separator
+).pack(fill=tk.X, padx=5, pady=10, expand=True)
+
 button8 = tk.Button(command_frame, text='Remove Header')
 button8.pack(expand=tk.YES)
 button9 = tk.Button(command_frame, text='One column into two')
 button9.pack(expand=tk.YES)
 button10 = tk.Button(command_frame, text='First column')
 button10.pack(expand=tk.YES)
+
+ttk.Separator(
+    master=command_frame,
+    orient=tk.HORIZONTAL,
+    class_=ttk.Separator
+).pack(fill=tk.X, padx=5, pady=10, expand=True)
+
 button11 = tk.Button(command_frame, text='Sort')
 button11.pack(expand=tk.YES)
 button12 = tk.Button(command_frame, text='Undo')
@@ -169,7 +185,6 @@ button12['command'] = (lambda: replace_with_previous())
 root.mainloop()
 
 # TODO
-# Add separators for the buttons
 # Maybe disable the buttons so an action cannot be taken
 #  multiple times
 # Use OOP
