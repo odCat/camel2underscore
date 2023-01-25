@@ -120,7 +120,7 @@ def replace_with_previous():
 command_frame = tk.Frame(root)
 command_frame.pack(side='right')
 
-button1 = tk.Button(command_frame, text='Open Text File')
+button1 = tk.Button(command_frame, text='Load Text File')
 button1.pack(expand=tk.YES)
 button2 = tk.Button(command_frame, text='Camel 2 Underscore')
 button2.pack(expand=tk.YES)
