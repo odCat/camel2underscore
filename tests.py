@@ -14,8 +14,9 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import camel2underscore as c2u
 import unittest
+
+import camel2underscore as c2u
 
 
 class TestCamel2Underscore(unittest.TestCase):

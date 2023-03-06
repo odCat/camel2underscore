@@ -15,10 +15,8 @@
 #   limitations under the License.
 
 import re
-from sys import argv
-from sys import path
-from sys import exit as sys_exit
 from re import sub
+from sys import argv, path, exit as sys_exit
 import os
 import json
 

@@ -14,8 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
 
 import camel2underscore as c2u
 
