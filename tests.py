@@ -59,7 +59,8 @@ class TestCamel2Underscore(unittest.TestCase):
     def test_make_printable(self):
         expected = 'test'
         data = '__TeSt__'
-        self.assertEqual(expected, c2u.remove_underscores_from_start_and_end(data))
+        self.assertEqual(
+                expected, c2u.remove_underscores_from_start_and_end(data))
 
     def test_text_to_code(self):
         expected = "'test1',\n'test2'\n"
