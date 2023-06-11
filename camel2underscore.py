@@ -121,7 +121,7 @@ def convert_to_text(data):
     result = result.replace('\n', '')
     result = result.replace('", ', '\n')
     result = result.replace('",', '\n')
-    result = remove(result, '[]"')
+    result = remove(result, '[]{}"')
     return result
 
 
