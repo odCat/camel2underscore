@@ -171,7 +171,9 @@ def compare_columns(columns1, columns2):
     columns2 = list_to_lowercase(columns2)
     return set(columns1) == set(columns2)
 
-
+# TODO
+# I will never load the columns from files
+# This probably has to be removed
 def get_and_compare_columns(source1, source2):
     def get_columns(source):
         with open(source, 'r') as source:
