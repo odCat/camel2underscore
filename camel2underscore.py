@@ -18,7 +18,6 @@ import re
 from re import sub
 from sys import argv, path, exit as sys_exit
 import os
-import json
 
 
 def is_underscore_notation(value):
