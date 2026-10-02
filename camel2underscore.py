@@ -1,6 +1,6 @@
 #!python
 
-#   Copyright 2020, 2021, 2022, 2023, 2024 Mihai Gătejescu
+#   Copyright 2020, 2021, 2022, 2023, 2024, 2026 Mihai Gătejescu
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -14,33 +14,34 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import json
+import os
 import re
 from re import sub
 from sys import argv, path, exit as sys_exit
-import os
 
 
-def is_underscore_notation(value):
+def is_underscore_notation(value: str) -> bool:
     return '_' in value.strip('_')
 
 
-def first_char_is_underscore(output):
+def first_char_is_underscore(output: str) -> bool:
     return output[0] == '_'
 
 
-def last_char_is_underscore(output):
+def last_char_is_underscore(output: str) -> bool:
     return output[-1] == '_'
 
 
-def remove_first_character(output):
+def remove_first_character(output: str) -> str:
     return output[1:]
 
 
-def remove_last_character(output):
+def remove_last_character(output: str) -> str:
     return output[:-1]
 
 
-def remove_underscores_from_start_and_end(output):
+def remove_underscores_from_start_and_end(output: str) -> str:
     while first_char_is_underscore(output):
         output = remove_first_character(output)
     while last_char_is_underscore(output):
@@ -48,10 +49,10 @@ def remove_underscores_from_start_and_end(output):
     return output.lower()
 
 
-def read_input_from_file(input_file='input_file.txt'):
+def read_input_from_file(input_file: str ='input_file.txt') -> list[str]:
     output = []
 
-    def remove_newlines_from_list(text):
+    def remove_newlines_from_list(text: list[str]) -> list[str]:
         result = []
         for line in text:
             result.append(remove_last_character(line))
@@ -68,28 +69,28 @@ def read_input_from_file(input_file='input_file.txt'):
     return output
 
 
-def switch_cases(text):
+def switch_cases(text: str) -> str:
     if text.islower():
         return text.upper()
     else:
         return text.lower()
 
 
-def convert_text_to_code(text):
+def convert_text_to_code(text: str) -> str:
     result = sub('\n+', '\n', text)
     result = "'" + result
     result = result.replace('\n', "',\n'")
     return result[:-3] + '\n'
 
 
-def list_to_text(a_list):
+def list_to_text(a_list: list[str]) -> str:
     result = ''
     for i in a_list:
         result += i + '\n'
     return result
 
 
-def remove_whitespaces(plain_text):
+def remove_whitespaces(plain_text: str) -> str:
     plain_text = plain_text.replace('\t', '')
     plain_text = sub('\n+', '\n', plain_text)
     plain_text = sub(' +\n', '\n', plain_text)
@@ -97,21 +98,21 @@ def remove_whitespaces(plain_text):
     return plain_text.lstrip()
 
 
-def to_double_quote_list(text):
+def to_double_quote_list(text: str) -> str:
     result = remove_whitespaces(text)
     result = result.replace('\n', '", "')
     return '["' + result[:-3] + ']'
 
 
-def to_single_quote_list(text):
+def to_single_quote_list(text: str) -> str:
     result = remove_whitespaces(text)
     result = result.replace('\n', '\', \'')
     return '[\'' + result[:-3] + ']'
 
 
-def convert_to_text(data):
+def convert_to_text(data: str) -> str:
 
-    def remove(text, characters):
+    def remove(text: str, characters: str) -> str:
         for ch in characters:
             text = text.replace(ch, '')
         return text
@@ -124,7 +125,7 @@ def convert_to_text(data):
     return result
 
 
-def convert_camel_2_underscore(input_values_list):
+def convert_camel_2_underscore(input_values_list: list[str]) -> str:
     previous_was_digit = False
     previous_was_uppercase = False
     inside_acronym = False
@@ -158,14 +159,14 @@ def convert_camel_2_underscore(input_values_list):
     return remove_last_character(output)
 
 
-def list_to_lowercase(columns):
+def list_to_lowercase(columns: list[str]) -> list[str]:
     result = []
     for i in columns:
         result.append(i.lower())
     return result
 
 
-def compare_columns(columns1, columns2):
+def compare_columns(columns1: list[str], columns2: list[str]) -> bool:
     columns1 = list_to_lowercase(columns1)
     columns2 = list_to_lowercase(columns2)
     return set(columns1) == set(columns2)
@@ -173,8 +174,8 @@ def compare_columns(columns1, columns2):
 # TODO
 # I will never load the columns from files
 # This probably has to be removed
-def get_and_compare_columns(source1, source2):
-    def get_columns(source):
+def get_and_compare_columns(source1: str, source2: str) -> bool:
+    def get_columns(source: str) -> list[str]:
         with open(source, 'r') as source:
             result = json.load(source)
         return result
@@ -184,7 +185,7 @@ def get_and_compare_columns(source1, source2):
     return compare_columns(columns1, columns2)
 
 
-def split_into_two_columns(text, items_in_column=2):
+def split_into_two_columns(text: str, items_in_column: int = 2) -> str:
     text = sub('^ *', '', text)
     text = sub(' +', ' ', text)
     result = ''
@@ -200,12 +201,12 @@ def split_into_two_columns(text, items_in_column=2):
     return result
 
 
-def get_first_column(text):
+def get_first_column(text: str) -> str:
     text = remove_whitespaces(text)
     return sub(' .*$', '', text, flags=re.MULTILINE)
 
 
-def order_lines(text):
+def order_lines(text: str) -> str:
     text = remove_whitespaces(text)
     text = text.split('\n')
     text.sort()
@@ -216,7 +217,7 @@ def order_lines(text):
     return result
 
 
-def two_columns(text):
+def two_columns(text: str) -> str:
     result = ''
     text = text.split('\n')
     for i in range(len(text)):
@@ -228,7 +229,7 @@ def two_columns(text):
     return result
 
 
-def remove_header(text):
+def remove_header(text: str) -> str:
     result = sub(r'^.*\n', '', text, count=1)
     return result
 
